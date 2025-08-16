@@ -63,6 +63,16 @@
         </div>
         <div v-if="date" class="space-y-1">
           <div
+            v-for="sub in getFirstTimeSubscriptionsForDate(date)"
+            :key="`first-${sub.id}`"
+            class="text-xs flex items-center gap-1 truncate bg-green-100 rounded px-1"
+            :title="`首次訂閱 ${sub.name}: NT$ ${sub.amount}`"
+          >
+            <span>{{ sub.emoji }}</span>
+            <span class="truncate">{{ sub.name }}</span>
+            <span class="text-green-700 font-semibold">首次</span>
+          </div>
+          <div
             v-for="charge in getChargesForDate(date)"
             :key="charge.subscriptionId"
             class="text-xs flex items-center gap-1 truncate"
@@ -144,6 +154,15 @@ const getChargesForDate = (date) => {
   if (!date) return []
   const dateStr = date.toISOString().split('T')[0]
   return charges.value.filter(charge => charge.chargeDate === dateStr)
+}
+
+const getFirstTimeSubscriptionsForDate = (date) => {
+  if (!date) return []
+  const dateStr = date.toISOString().split('T')[0]
+  return props.subscriptions.filter(sub => {
+    const anchorDate = sub.anchorDate?.split('T')[0]
+    return anchorDate === dateStr
+  })
 }
 
 const isToday = (date) => {
