@@ -1,21 +1,21 @@
 <template>
-  <div class="bg-white rounded-lg shadow-lg p-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors">
     <div class="flex justify-between items-center mb-6">
       <div class="flex items-center gap-4">
         <button
           @click="previousMonth"
-          class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h2 class="text-xl font-semibold">
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">
           {{ currentYear }}年 {{ currentMonth }}月
         </h2>
         <button
           @click="nextMonth"
-          class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -23,15 +23,15 @@
         </button>
         <button
           @click="goToToday"
-          class="text-sm text-blue-500 hover:text-blue-600 transition-colors"
+          class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
         >
           回到本月
         </button>
       </div>
       
       <div class="text-right">
-        <div class="text-sm text-gray-600">本月總支出</div>
-        <div class="text-2xl font-bold text-gray-800">
+        <div class="text-sm text-gray-600 dark:text-gray-400">本月總支出</div>
+        <div class="text-2xl font-bold text-gray-800 dark:text-gray-100">
           NT$ {{ monthlyTotal.toLocaleString() }}
         </div>
       </div>
@@ -41,7 +41,7 @@
       <div
         v-for="day in weekDays"
         :key="day"
-        class="text-center text-sm font-medium text-gray-600 py-2"
+        class="text-center text-sm font-medium text-gray-600 dark:text-gray-400 py-2"
       >
         {{ day }}
       </div>
@@ -49,28 +49,28 @@
       <div
         v-for="(date, index) in calendarDates"
         :key="index"
-        class="min-h-[100px] border border-gray-200 p-2 relative"
+        class="min-h-[100px] border border-gray-200 dark:border-gray-600 p-2 relative"
         :class="{
-          'bg-gray-50': !date,
-          'bg-blue-50': isToday(date),
-          'hover:bg-gray-50': date && !isToday(date),
+          'bg-gray-50 dark:bg-gray-900': !date,
+          'bg-blue-50 dark:bg-blue-900': isToday(date),
+          'hover:bg-gray-50 dark:hover:bg-gray-700': date && !isToday(date),
           'cursor-pointer': date
         }"
         @click="date && showDayDetail(date)"
       >
-        <div v-if="date" class="text-sm font-medium mb-1">
+        <div v-if="date" class="text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">
           {{ date.getDate() }}
         </div>
         <div v-if="date" class="space-y-1">
           <div
             v-for="sub in getFirstTimeSubscriptionsForDate(date)"
             :key="`first-${sub.id}`"
-            class="text-xs flex items-center gap-1 truncate bg-green-100 rounded px-1"
+            class="text-xs flex items-center gap-1 truncate bg-green-100 dark:bg-green-900 rounded px-1"
             :title="`首次訂閱 ${sub.name}: NT$ ${sub.amount}`"
           >
             <span>{{ sub.emoji }}</span>
             <span class="truncate">{{ sub.name }}</span>
-            <span class="text-green-700 font-semibold">首次</span>
+            <span class="text-green-700 dark:text-green-300 font-semibold">首次</span>
           </div>
           <div
             v-for="charge in getChargesForDate(date)"
@@ -80,7 +80,7 @@
           >
             <span>{{ charge.subscription.emoji }}</span>
             <span class="truncate">{{ charge.subscription.name }}</span>
-            <span class="text-gray-600">${{ charge.amount }}</span>
+            <span class="text-gray-600 dark:text-gray-400">${{ charge.amount }}</span>
           </div>
         </div>
       </div>

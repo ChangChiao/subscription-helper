@@ -1,14 +1,14 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-lg max-w-md w-full">
+    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full">
       <div class="p-6">
         <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">
             {{ formatDate(date) }} 的訂閱
           </h3>
           <button
             @click="$emit('close')"
-            class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -16,7 +16,7 @@
           </button>
         </div>
         
-        <div v-if="charges.length === 0" class="text-center py-8 text-gray-500">
+        <div v-if="charges.length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
           當日無扣款項目
         </div>
         
@@ -24,32 +24,32 @@
           <div
             v-for="charge in charges"
             :key="charge.subscriptionId"
-            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+            class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
           >
             <div class="flex items-center gap-3">
               <span class="text-2xl">{{ charge.subscription.emoji }}</span>
               <div>
-                <div class="font-medium">{{ charge.subscription.name }}</div>
-                <div class="text-sm text-gray-600">
+                <div class="font-medium text-gray-800 dark:text-gray-100">{{ charge.subscription.name }}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">
                   {{ getCycleText(charge.subscription) }}
                 </div>
               </div>
             </div>
             <div class="text-right">
-              <div class="font-medium">
+              <div class="font-medium text-gray-800 dark:text-gray-100">
                 {{ charge.currency }} {{ charge.amount.toLocaleString() }}
               </div>
-              <div class="text-xs text-gray-500">
+              <div class="text-xs text-gray-500 dark:text-gray-400">
                 {{ getStatusText(charge.status) }}
               </div>
             </div>
           </div>
         </div>
         
-        <div v-if="charges.length > 0" class="mt-4 pt-4 border-t border-gray-200">
+        <div v-if="charges.length > 0" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
           <div class="flex justify-between items-center">
-            <span class="font-medium">當日總計</span>
-            <span class="text-lg font-bold">
+            <span class="font-medium text-gray-800 dark:text-gray-100">當日總計</span>
+            <span class="text-lg font-bold text-gray-800 dark:text-gray-100">
               NT$ {{ dayTotal.toLocaleString() }}
             </span>
           </div>

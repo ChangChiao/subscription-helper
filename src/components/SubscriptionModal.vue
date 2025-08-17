@@ -1,27 +1,27 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
       <div class="p-6">
-        <h2 class="text-2xl font-bold mb-6">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
           {{ isEdit ? '編輯訂閱' : '新增訂閱' }}
         </h2>
         
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 名稱 <span class="text-red-500">*</span>
               </label>
               <input
                 v-model="form.name"
                 type="text"
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Emoji <span class="text-red-500">*</span>
               </label>
               <input
@@ -29,14 +29,14 @@
                 type="text"
                 required
                 maxlength="2"
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
           
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 金額 <span class="text-red-500">*</span>
               </label>
               <input
@@ -44,18 +44,18 @@
                 type="number"
                 required
                 min="0"
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 幣別 <span class="text-red-500">*</span>
               </label>
               <select
                 v-model="form.currency"
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="TWD">TWD</option>
                 <option value="USD">USD</option>
@@ -67,13 +67,13 @@
           
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 週期類型 <span class="text-red-500">*</span>
               </label>
               <select
                 v-model="form.cycleType"
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="weekly">每週</option>
                 <option value="monthly">每月</option>
@@ -82,7 +82,7 @@
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 週期間隔 <span class="text-red-500">*</span>
               </label>
               <input
@@ -90,32 +90,32 @@
                 type="number"
                 required
                 min="1"
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
           
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 首扣日期 <span class="text-red-500">*</span>
               </label>
               <input
                 v-model="form.anchorDate"
                 type="date"
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 狀態 <span class="text-red-500">*</span>
               </label>
               <select
                 v-model="form.status"
                 required
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="active">啟用</option>
                 <option value="paused">暫停</option>
@@ -199,13 +199,13 @@
             <button
               type="button"
               @click="$emit('close')"
-              class="px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
+              class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg transition-colors"
             >
               取消
             </button>
             <button
               type="submit"
-              class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors"
+              class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 rounded-lg transition-colors"
             >
               {{ isEdit ? '更新' : '新增' }}
             </button>
