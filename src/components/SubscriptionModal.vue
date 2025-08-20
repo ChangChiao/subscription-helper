@@ -125,41 +125,6 @@
             </div>
           </div>
           
-          <div v-if="form.cycleType === 'monthly'">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              少天月份策略
-            </label>
-            <select
-              v-model="form.carryStrategy"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="end_of_month">向前至月底</option>
-              <option value="skip">跳過該月</option>
-            </select>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              服務網址
-            </label>
-            <input
-              v-model="form.vendorUrl"
-              type="url"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              付款方式
-            </label>
-            <input
-              v-model="form.paymentMethod"
-              type="text"
-              placeholder="例：信用卡、PayPal"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
           
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -235,10 +200,7 @@ const form = ref({
   cycleType: 'monthly',
   cycleInterval: 1,
   anchorDate: new Date().toISOString().split('T')[0],
-  carryStrategy: 'end_of_month',
   status: 'active',
-  vendorUrl: '',
-  paymentMethod: '',
   notes: '',
   color: '#FF0000',
   tags: []
