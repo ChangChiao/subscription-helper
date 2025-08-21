@@ -24,13 +24,33 @@
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Emoji <span class="text-red-500">*</span>
               </label>
-              <input
+              <select
                 v-model="form.emoji"
-                type="text"
                 required
-                maxlength="2"
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              >
+                <option value="">請選擇</option>
+                <option value="📺">📺 電視/影音</option>
+                <option value="🎵">🎵 音樂</option>
+                <option value="🎮">🎮 遊戲</option>
+                <option value="📱">📱 手機</option>
+                <option value="💻">💻 軟體/雲端</option>
+                <option value="📰">📰 新聞</option>
+                <option value="📚">📚 閱讀/電子書</option>
+                <option value="🏋️">🏋️ 健身</option>
+                <option value="🍔">🍔 外送/餐飲</option>
+                <option value="🚗">🚗 交通</option>
+                <option value="🏠">🏠 居家</option>
+                <option value="💡">💡 公用事業</option>
+                <option value="🛒">🛒 購物</option>
+                <option value="💳">💳 金融</option>
+                <option value="🎓">🎓 學習</option>
+                <option value="👔">👔 商務</option>
+                <option value="🏥">🏥 健康/醫療</option>
+                <option value="🐕">🐕 寵物</option>
+                <option value="🎨">🎨 創作/設計</option>
+                <option value="⭐">⭐ 其他</option>
+              </select>
             </div>
           </div>
           
