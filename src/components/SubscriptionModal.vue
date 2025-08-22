@@ -85,78 +85,34 @@
             </div>
           </div>
           
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                週期類型 <span class="text-red-500">*</span>
-              </label>
-              <select
-                v-model="form.cycleType"
-                required
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="weekly">每週</option>
-                <option value="monthly">每月</option>
-                <option value="yearly">每年</option>
-              </select>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                週期間隔 <span class="text-red-500">*</span>
-              </label>
-              <input
-                v-model.number="form.cycleInterval"
-                type="number"
-                required
-                min="1"
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              週期類型 <span class="text-red-500">*</span>
+            </label>
+            <select
+              v-model="form.cycleType"
+              required
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="weekly">每週</option>
+              <option value="monthly">每月</option>
+              <option value="yearly">每年</option>
+            </select>
           </div>
-          
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                首扣日期 <span class="text-red-500">*</span>
-              </label>
-              <input
-                v-model="form.anchorDate"
-                type="date"
-                required
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                狀態 <span class="text-red-500">*</span>
-              </label>
-              <select
-                v-model="form.status"
-                required
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="active">啟用</option>
-                <option value="paused">暫停</option>
-                <option value="canceled">已取消</option>
-                <option value="trial">試用中</option>
-              </select>
-            </div>
-          </div>
-          
           
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              標籤
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              首扣日期 <span class="text-red-500">*</span>
             </label>
             <input
-              v-model="tagsInput"
-              type="text"
-              placeholder="用逗號分隔，例：影音,娛樂"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              v-model="form.anchorDate"
+              type="date"
+              required
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+          
+          
           
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -218,27 +174,22 @@ const form = ref({
   amount: 0,
   currency: 'TWD',
   cycleType: 'monthly',
-  cycleInterval: 1,
   anchorDate: new Date().toISOString().split('T')[0],
   status: 'active',
   notes: '',
-  color: '#FF0000',
-  tags: []
+  color: '#FF0000'
 })
 
-const tagsInput = ref('')
 
 watch(() => props.subscription, (subscription) => {
   if (subscription) {
     form.value = { ...subscription }
-    tagsInput.value = subscription.tags ? subscription.tags.join(', ') : ''
   }
 }, { immediate: true })
 
 const handleSubmit = () => {
   const subscription = {
-    ...form.value,
-    tags: tagsInput.value.split(',').map(tag => tag.trim()).filter(Boolean)
+    ...form.value
   }
   emit('save', subscription)
   emit('close')
