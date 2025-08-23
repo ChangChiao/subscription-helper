@@ -112,19 +112,6 @@
             />
           </div>
           
-          
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              顏色
-            </label>
-            <input
-              v-model="form.color"
-              type="color"
-              class="w-full h-10 px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
               備註
@@ -176,8 +163,7 @@ const form = ref({
   cycleType: 'monthly',
   anchorDate: new Date().toISOString().split('T')[0],
   status: 'active',
-  notes: '',
-  color: '#FF0000'
+  notes: ''
 })
 
 
